@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background: url(../img/wheat.jpeg);
+  padding: 30px;
+  padding-top: 10px;
+  padding-right: 0;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  height: 90vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+h1 {
+  font-size: 50px;
+  margin-bottom: 0;
+  color: #efdd90;
+  text-decoration: underline dotted #d2a79b 5px;
+  text-underline-offset: 5px;
+  background: linear-gradient(135deg, #4d5a71, #9e899a, #a38d9e);
+  height: fit-content;
+  padding: 10px;
+}
+h2 {
+  margin-top: 0;
+  margin-right: 10px;
+}
+.img {
+  box-shadow: -5px 10px 31px 0 rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: -5px 10px 31px 0 rgba(0, 0, 0, 0.22);
+}

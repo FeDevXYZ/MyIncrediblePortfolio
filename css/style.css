@@ -18,13 +18,32 @@ html {
 }
 body {
   overflow-x: hidden;
+  position: relative;
 }
 
-@font-face {
-  font-family: 'StayWithMe';
-  src: url('../font/StayWithMe.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+
+/* ==========================================================================
+   Outdoor button
+   ========================================================================== */
+.OutdoorButton{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(129 149 0);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 80px;
+  height: 80px;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+.OutdoorButton img{
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 /* ==========================================================================
    header - buttons, text and images
@@ -247,7 +266,7 @@ h2 {
   display: flex;
   align-items: center;
   gap: 25px;
-  animation: gallery-scroll 30s linear infinite;
+  /*animation: gallery-scroll 30s linear infinite;*/
   animation-play-state: running;
   width: max-content; /* impedisce al track di restringersi */
 }
@@ -482,11 +501,50 @@ h2 {
   position: absolute;
   top: 10px;
   height: 100%;
-  width: 55%;
+  width: 54%;
   transform: translateX(40px);
   max-height: 180px;
   overflow: hidden;
   font-size: 14px;
+}
+
+/* ==========================================================================
+   Project stats section
+   ========================================================================== */
+.projectstatscont{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin: 10px 0 10px 0;
+  background-color: #efefef;
+  border-radius: 10px;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.stat{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #a1a1a1;
+}
+.text{
+  background-color: #ffffff;
+  padding: 10px;
+  margin-top: 0;
+}
+.projectstats{
+  margin-top: 10px;
+}
+.projectstats h4{
+  margin: 0;
+}
+.projectstats p{
+  margin: 0;
+}
+.projectstats img{
+  border-radius: 5px;
+  border: 1px solid #a1a1a1;
 }
 /*
  * Remove text-shadow in selection highlight:
