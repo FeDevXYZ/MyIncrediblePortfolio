@@ -45,6 +45,18 @@ body {
   object-fit: cover;
   border-radius: 50%;
 }
+.OutdoorButton:hover {
+  animation: outdoor 0.5s forwards;
+}
+
+@keyframes outdoor {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
 /* ==========================================================================
    header - buttons, text and images
    ========================================================================== */
