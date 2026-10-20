@@ -1,17 +1,32 @@
+body{
+  background-color: #393518;
+  margin: 0;
+}
 .header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   background: url(../img/wheat.jpeg);
   padding: 30px;
   padding-top: 10px;
   padding-right: 0;
-  margin-bottom: 30px;
+  margin-bottom: 150px;
   border-radius: 10px;
   height: 90vh;
-  overflow: hidden;
   background-size: cover;
-  background-position: center;
+  background-position: top;
+  position: relative;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 70%,
+    #393518 100%
+  );
+  pointer-events: none;
 }
 h1 {
   font-size: 50px;
@@ -22,12 +37,47 @@ h1 {
   background: linear-gradient(135deg, #4d5a71, #9e899a, #a38d9e);
   height: fit-content;
   padding: 10px;
+  width: fit-content;
 }
 h2 {
   margin-top: 0;
   margin-right: 10px;
 }
-.img {
-  box-shadow: -5px 10px 31px 0 rgba(0, 0, 0, 0.22);
-  -webkit-box-shadow: -5px 10px 31px 0 rgba(0, 0, 0, 0.22);
+.component{
+  position: absolute;
+  bottom: -100px;
+  right: 10px;
+}
+.watercolorbird{
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.bird{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+}
+.watercolor{
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  object-position: center;
+  opacity: 0.5;
+}
+.divider{
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+.landing{
+  color: #a4d592;
+  font-size: 2.5em;
+  padding: 10px 200px
 }
