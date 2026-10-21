@@ -153,7 +153,7 @@ h2 {
   padding: 0 0 20px 20px;
   width: 490px;
   height: 250px;
-  background-image: url("../img/Firefly_RemoveBackground.png");
+  background-image: url("../img/optimized/Firefly_RemoveBackground.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -331,7 +331,7 @@ h2 {
   width: 100%;
   height: auto;
   margin-inline: auto;
-  background-image: url("../img/myself.png");
+  background-image: url("../img/optimized/myself.webp");
   background-size: cover;
   background-position: center;
   aspect-ratio: 16 / 9;
@@ -353,7 +353,7 @@ h2 {
   position: absolute;
   top: 126px;
   left: 395px;
-  background-image: url("../img/COMPONENT 2_ MUSIC.png");
+  background-image: url("../img/optimized/COMPONENT 2_ MUSIC.webp");
   background-size: cover;
   width: 200px;
   height: 200px;
@@ -418,7 +418,7 @@ h2 {
   left: 20px;
   width: 200px;
   height: 200px;
-  background-image: url("../img/POLAROID NORM.png");
+  background-image: url("../img/optimized/POLAROID NORM.webp");
   padding: 10px;
   background-position: center;
   background-size: cover;
@@ -461,7 +461,7 @@ h2 {
   left: 155px;
   width: 180px;
   height: 200px;
-  background-image: url("../img/POLAROID WIDE.png");
+  background-image: url("../img/optimized/POLAROID WIDE.webp");
   padding: 10px;
   background-position: center;
   background-size: cover;
@@ -500,7 +500,7 @@ h2 {
   left: 255px;
   height: 200px;
   width: 200px;
-  background-image: url("../img/COMPONENT 1_ TEXT BOX.png");
+  background-image: url("../img/optimized/COMPONENT 1_ TEXT BOX.webp");
   padding: 10px;
   background-position: center;
   background-size: cover;

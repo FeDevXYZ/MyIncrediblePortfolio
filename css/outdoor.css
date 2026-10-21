@@ -6,7 +6,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: url(../img/wheat.jpeg);
+  background: url(../img/optimized/wheat.webp);
   padding: 10px 0 140px 0;
   margin-bottom: 150px;
   border-radius: 10px;
