@@ -85,54 +85,53 @@ h2 {
   color: #a4d592;
   font-size: 2.5em;
   padding: 10px 200px;
-  margin-bottom: 180px;
+  margin-bottom: 180px; background: ;
 }
 
 .gallery{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   background: #423d20;
 }
-.gallery-item {
+.gallery-item{
+  --gallery-item-background: transparent;
+  --gallery-copy-background: #779eaa;
+  --gallery-copy-color: #d3d8dd;
+  --gallery-frame-color: rgb(152 197 213);
   position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 1.5em;
-  color: #a4d592;
-  padding: 10px;
-  width: 98vw;
-  height: 300px;
-  overflow: hidden;
-  background: none;
-  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 460px;
+  background: var(--gallery-item-background);
+  transform: scale(0.8);
 }
-.gallery-item::before {
-  content: "";
+.gallery-item div{
   position: absolute;
-  inset: -10px;
-  background: url("../img/optimized/butterfly-on-flowers.webp")
-  no-repeat center / cover;
-  filter: blur(8px);
-  z-index: -1;
+  display: flex;
+  left: 280px;
+  border: var(--gallery-frame-color) inset 10px;
+
 }
 .gallery-item img{
-  width: 60%;
-  aspect-ratio: 2/1;
-  height: 62vh;
-  border-radius: 10px 0 0 10px;
-  transform: translateX(5%);
+  width: 320px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
 }
 .gallery-item p{
-  background: rgb(108 145 198);
-  padding: 10px 10px 10px 10px;
-  color: #fff;
-  height: 29vh;
-  width: 65%;
-  z-index: 1;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transform: translateX(-5%);
-  text-align: justify;
+  position: absolute;
+  width: 30%;
+  background: var(--gallery-copy-background);
+  padding: 10px;
+  left: 70px;
+  font-size: 1.5em;
+  color: var(--gallery-copy-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.gallery-item:first-of-type div{
+  left: 70px;
+}
+.gallery-item:first-of-type p{
+  left: auto;
+  right: 70px;
 }
