@@ -34,151 +34,53 @@
     </div>
     <img class="divider" src="img/optimized/div1.webp" alt="Divider" style="bottom: -150px;">
   </div>
-  <div style="height: 250px; width: 100%; background: #393518; position: relative; z-index: 2;"></div>
-  <div class="gallery">
-        <!--<div class="gallery-item">
-      <img src="img/optimized/butterfly-on-flowers.webp" alt="Butterfly on flowers">
-      <p>This is one of the most beautiful butterflies I saw in my backyard. With its delicate wings, it flew on every tree next to the bees.</p>
-    </div>
-    <div class="gallery-item">
-      <img src="img/optimized/boat-on-shore.webp" alt="Boat on shore">
-      <p>This is one of the most beautiful butterflies I saw in my backyard. With its delicate wings, it flew on every tree next to the bees.</p>
-    </div>
-    <div class="gallery-item" style="--gallery-item-background: transparent; --gallery-copy-background: #779eaa; --gallery-copy-color: #d3d8dd; --gallery-frame-color: rgb(152 197 213);">
-      <div>
-        <img src="img/optimized/boat-on-shore.webp" alt="Boat on shore">
-        <img src="img/optimized/sailboat-at-sea.webp" alt="Sailboat at sea">
-      </div>
-      <p>The boats, whether they are sailing or docked, are a sight to behold. They are a symbol of freedom and adventure.</p>
-      <p style="transform: translateY(340%); font-size: 1.2em">Shot on the sea of Milazzo</p>
-    </div>
-    <div class="gallery-item" style="--gallery-item-background: transparent; --gallery-copy-background: #a39f32; --gallery-copy-color: #fdf9e5; --gallery-frame-color: #bfbb4b;">
-      <div>
-        <img src="img/optimized/bee-on-blossoms.webp" alt="Bee on blossom">
-        <img src="img/optimized/butterfly-on-flowers.webp" alt="Butterfly on flowers">
-      </div>
-      <p style="">Bees and butterflies, representing the beauty of nature, are a symbol of life and vitality. They are a sign of the birth of the new Spring season</p>
-      <p style="transform: translateY(400%); font-size: 1.2em">Shot on the first days of Spring</p>
-    </div> -->
-    <div class="item">
-      <section class="ONE" style="--image: url('../img/optimized/boat-on-shore.webp'); --image-position: bottom;"><h2 style="position: sticky; top: 10px; padding: 20px; font-size: 2.5em; color: #ffffff; text-shadow: 2px 0px 0 #6c91c4, 1.41px 1.41px 0 #6c91c4, 0px 2px 0 #6c91c4, -1.41px 1.41px 0 #6c91c4, -2px 0px 0 #6c91c4, -1.41px -1.41px 0 #6c91c4, 0px -2px 0 #6c91c4, 1.41px -1.41px 0 #6c91c4;"><em>Sky's the limit</em></h2></section>
-      <section class="ONE" style="--image: url('../img/optimized/fotografia.webp'); --image-position: bottom;"></section>
-      <section class="ONE" style="--image: url('../img/optimized/fotografia2.webp'); --image-position: bottom;"></section>
-      <div class="stickycontainer">
-        <div class="title">
-          <h4>ATTO I</h4>
-          <h3>Sky and landscape</h3>
-        </div>
-      </div>
-      <div class="sticky-mask" aria-hidden="true">
-        <section class="ONE" style="--image: url('../img/optimized/fotografia2.webp'); --image-position: bottom;"></section>
-      </div>
-    </div>
+  <section class="gallery" aria-label="Outdoor photography">
+    <section class="gallery-slide" data-act="Atto I" data-title="Sky and landscape">
+      <img src="img/optimized/boat-on-shore.webp" alt="A boat resting on the shore">
+      <h2 class="slide-heading">Sky's the limit</h2>
+    </section>
+    <section class="gallery-slide" data-act="Atto I" data-title="Sky and landscape">
+      <img src="img/optimized/fotografia.webp" alt="Open landscape beneath the sky">
+    </section>
+    <section class="gallery-slide" data-act="Atto I" data-title="Sky and landscape">
+      <img src="img/optimized/fotografia2.webp" alt="A view of the landscape">
+    </section>
+  </section>
+  <div class="gallery-caption" aria-live="polite" aria-atomic="true">
+    <p class="caption-act">Atto I</p>
+    <h2 class="caption-title">Sky and landscape</h2>
+    <p class="caption-index" aria-label="Photo 1 of 3"><span>01</span><span aria-hidden="true"> / </span><span>03</span></p>
   </div>
   <div class="">test text</div>
 <script>
   const gallery = document.querySelector(".gallery");
+  const caption = document.querySelector(".gallery-caption");
+  const actLabel = caption.querySelector(".caption-act");
+  const titleLabel = caption.querySelector(".caption-title");
+  const indexLabel = caption.querySelector(".caption-index");
+  const slides = [...gallery.querySelectorAll(".gallery-slide")];
 
-  const CONFIG = {
-    triggerDistance: 100, // Quanto scroll serve per cambiare sezione
-    duration: 900,        // Durata animazione in millisecondi
-    threshold: 30         // Evita di reagire a movimenti minuscoli
-  };
+  const galleryObserver = new IntersectionObserver(([entry]) => {
+    caption.classList.toggle("is-visible", entry.isIntersecting);
+  }, { threshold: 0.01 });
 
-  let wheelDistance = 0;
-  let scrollTimer;
-  let animating = false;
+  galleryObserver.observe(gallery);
 
-  function smoothScrollTo(target, duration) {
-    if (animating) return;
+  const slideObserver = new IntersectionObserver((entries) => {
+    const activeSlide = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]?.target;
 
-    animating = true;
+    if (!activeSlide) return;
+    slides.forEach((slide) => slide.classList.toggle("is-active", slide === activeSlide));
+    const activeIndex = slides.indexOf(activeSlide) + 1;
+    actLabel.textContent = activeSlide.dataset.act;
+    titleLabel.textContent = activeSlide.dataset.title;
+    indexLabel.setAttribute("aria-label", `Photo ${activeIndex} of ${slides.length}`);
+    indexLabel.innerHTML = `<span>${String(activeIndex).padStart(2, "0")}</span><span aria-hidden="true"> / </span><span>${String(slides.length).padStart(2, "0")}</span>`;
+  }, { threshold: [0.5, 0.75, 1] });
 
-    const start = window.scrollY;
-    const distance = target - start;
-    const startTime = performance.now();
-
-    function animate(now) {
-      const progress = Math.min((now - startTime) / duration, 1);
-
-      // Curva morbida: accelerazione e rallentamento
-      const eased = progress < 0.5
-        ? 4 * progress ** 3
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-      window.scrollTo(0, start + distance * eased);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        animating = false;
-      }
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  window.addEventListener("wheel", (event) => {
-    const sections = [...gallery.querySelectorAll(".ONE")];
-    if (!sections.length) return;
-
-    const galleryTop =
-      gallery.getBoundingClientRect().top + window.scrollY;
-    const galleryBottom = galleryTop + gallery.offsetHeight;
-
-    // Interviene soltanto quando siamo nella galleria
-    if (
-      window.scrollY < galleryTop ||
-      window.scrollY >= galleryBottom - 5
-    ) {
-      wheelDistance = 0;
-      return;
-    }
-
-    if (animating) {
-      event.preventDefault();
-      return;
-    }
-
-    if (Math.abs(event.deltaY) < CONFIG.threshold) return;
-
-    wheelDistance += event.deltaY;
-
-    clearTimeout(scrollTimer);
-
-    scrollTimer = setTimeout(() => {
-      wheelDistance = 0;
-    }, 180);
-
-    if (Math.abs(wheelDistance) < CONFIG.triggerDistance) {
-      event.preventDefault();
-      return;
-    }
-
-    const direction = Math.sign(wheelDistance);
-    wheelDistance = 0;
-
-    const positions = sections.map(section =>
-      section.getBoundingClientRect().top + window.scrollY
-    );
-
-    // Trova la sezione più vicina alla posizione corrente
-    let current = 0;
-
-    for (let i = 0; i < positions.length; i++) {
-      if (positions[i] <= window.scrollY + 30) {
-        current = i;
-      }
-    }
-
-    let next = current + direction;
-
-    // Non bloccare lo scroll oltre i limiti della galleria
-    if (next < 0 || next >= sections.length) return;
-
-    event.preventDefault();
-    smoothScrollTo(positions[next], CONFIG.duration);
-  }, { passive: false });
+  slides.forEach((slide) => slideObserver.observe(slide));
 </script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+html {
+  scroll-snap-type: y proximity;
+}
 body{
   background-color: #393518;
   margin: 0;
@@ -83,97 +86,120 @@ h2 {
   z-index: 10;
 }
 
-.gallery{
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background: #423d20;
-}
-.item{
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background: #423d20;
+.gallery {
   position: relative;
+  margin-top: clamp(3rem, 8vh, 7rem);
+  background: #423d20;
 }
-.ONE{
-  background: var(--image);
-  background-size: cover;
-  background-position: var(--image-position);
-  height: 100svh;
-  scroll-snap-align: none;
-}
-.title{
+.gallery-slide {
+  position: relative;
+  min-height: 100svh;
   box-sizing: border-box;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  display: grid;
+  place-items: center;
+  padding: 5svh clamp(1rem, 4vw, 4rem);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  background: #423d20;
 }
-.title h3{
-  color: WHITE;
-  font-size: 2em;
-  margin-top: 0;
+.gallery-slide > img {
+  display: block;
+  width: min(100%, 1500px);
+  height: 84svh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+  box-shadow: 0 18px 55px rgb(0 0 0 / 24%);
+  opacity: 0.88;
+  transform: scale(1.025);
+  transition: opacity 420ms ease, transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.title h4{
-  color: WHITE;
-  font-size: 1.5em;
-  margin-bottom: 0;
+.gallery-slide.is-active > img {
+  opacity: 1;
+  transform: scale(1);
 }
-.stickycontainer{
-  position: sticky;
-  bottom: 0;
-  margin-top: 470px;
-  z-index: 0;
+.gallery-slide:first-child > img {
+  object-position: bottom;
 }
-.sticky-mask{
+.slide-heading {
   position: absolute;
+  top: 8svh;
+  left: clamp(2rem, 7vw, 7rem);
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-shadow: 0 2px 14px rgb(0 0 0 / 55%);
+}
+.gallery-caption {
+  position: fixed;
+  z-index: 20;
+  right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100svh;
-  background: #423d20;
-  z-index: 10;
-  pointer-events: none;
-}
-
-
-
-.gallery-item{
-  --gallery-item-background: transparent;
-  --gallery-copy-background: #779eaa;
-  --gallery-copy-color: #d3d8dd;
-  --gallery-frame-color: rgb(152 197 213);
-  position: relative;
   box-sizing: border-box;
-  width: 100%;
-  min-height: 460px;
-  background: var(--gallery-item-background);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "act index" "title index";
+  align-items: end;
+  column-gap: 2rem;
+  padding: 1rem clamp(1.5rem, 5vw, 5rem) max(1.25rem, env(safe-area-inset-bottom));
+  color: #fff;
+  background: linear-gradient(transparent, rgb(0 0 0 / 58%));
+  opacity: 0;
+  transform: translateY(1rem);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
-.gallery-item div {
-  position: absolute;
-  display: flex;
-  left: 280px;
-  border: var(--gallery-frame-color) inset 10px;
+.gallery-caption.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-.gallery-item img{
-  width: 320px;
-  aspect-ratio: 3/4;
-  object-fit: cover;
+.caption-act {
+  grid-area: act;
+  margin: 0 0 0.25rem;
+  color: #efdd90;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
-.gallery-item p{
-  position: absolute;
-  width: 30%;
-  background: var(--gallery-copy-background);
-  padding: 10px;
-  left: 70px;
-  font-size: 1.5em;
-  color: var(--gallery-copy-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+.caption-title {
+  grid-area: title;
+  margin: 0;
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-weight: 500;
 }
-.gallery-item:first-of-type div{
-  left: 70px;
+.caption-index {
+  grid-area: index;
+  align-self: center;
+  margin: 0;
+  color: rgb(255 255 255 / 75%);
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
 }
-.gallery-item:first-of-type p{
-  left: auto;
-  right: 70px;
+@media (max-width: 540px) {
+  .gallery-caption {
+    column-gap: 1rem;
+  }
+  .gallery-slide {
+    min-height: 84svh;
+    padding: 4svh 1rem;
+  }
+  .gallery-slide > img {
+    height: 76svh;
+  }
+  .caption-index {
+    font-size: 0.8rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-caption,
+  .gallery-slide > img {
+    transition: none;
+  }
+  .gallery-slide > img {
+    opacity: 1;
+    transform: none;
+  }
 }
