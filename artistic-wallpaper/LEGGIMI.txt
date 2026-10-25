@@ -1,0 +1,5 @@
+QUIET FRAMES ? sfondo animato
+
+Apri index.html nel browser a schermo intero (F11). Le immagini sfumano lentamente, senza audio.
+Per usare uno sfondo statico, imposta preview.jpg come wallpaper.
+Le fotografie selezionate sono raccolte in images/.
